@@ -17,7 +17,27 @@ interface DraggableWrapperProps {
   height: number;
 }
 
+interface PointsProps {
+  points: PointType[];
+  onClick: () => void;
+  type: 'active' | 'normal';
+}
+
 const points: PointType[] = ['s', 'w', 'e', 'n', 'sw', 'nw', 'se', 'ne'];
+
+const Points: React.FC<PointsProps> = ({ points, onClick, type }) => (
+  <>
+    {points.map((point: PointType) => (
+      <div
+        key={point}
+        onClick={onClick}
+        css={css`
+          ${style[type]} ${style[point]}
+        `}
+      ></div>
+    ))}
+  </>
+);
 
 const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
   children,
@@ -35,7 +55,7 @@ const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
         !draggableRef.current?.contains(e.target as Node) ||
         !(e.target as HTMLElement).classList.contains('react-resizable-handle')
       ) {
-        setIsResizing(false);
+        setIsResizing(false); // 點擊 react-resizable-handle 以外的地方取消 resizing
       }
     };
 
@@ -57,15 +77,11 @@ const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
             height,
           }}
         >
-          {points.map((point: PointType) => (
-            <div
-              key={point}
-              onClick={() => setIsResizing(true)}
-              css={css`
-                ${style.active} ${style[point]}
-              `}
-            ></div>
-          ))}
+          <Points
+            points={points}
+            onClick={() => setIsResizing(true)}
+            type="active"
+          />
 
           {children}
         </div>
@@ -86,15 +102,12 @@ const DraggableWrapper: React.FC<DraggableWrapperProps> = ({
             }}
             ref={draggableRef}
           >
-            {points.map((point: PointType) => (
-              <div
-                key={point}
-                onClick={() => setIsResizing(true)}
-                css={css`
-                  ${style.normal} ${style[point]}
-                `}
-              ></div>
-            ))}
+            <Points
+              points={points}
+              onClick={() => setIsResizing(true)}
+              type="normal"
+            />
+
             {children}
           </div>
         </Draggable>

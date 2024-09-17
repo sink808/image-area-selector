@@ -2,7 +2,8 @@ import { useState, useRef, ChangeEvent } from 'react';
 import { style } from './AppStyle';
 
 import UploadArea from './components/UploadArea/UploadArea';
-import Selection from './components/Selection/Selection';
+import { Selection } from './components/SelectionWrapper/SelectionWrapper';
+import Selections from './components/Selections/Selections';
 
 export function App() {
   const [image, setImage] = useState<string>('');
@@ -74,24 +75,11 @@ export function App() {
               css={style.imgStyle}
               onMouseDown={handleMouseDown}
             />
-            {selections.map((selection) => (
-              <Selection
-                key={selection.id}
-                selection={selection}
-                setSelections={setSelections}
-              />
-            ))}
-            {currentSelection && (
-              <div
-                css={style.selectionBox}
-                style={{
-                  left: currentSelection.x,
-                  top: currentSelection.y,
-                  width: currentSelection.width,
-                  height: currentSelection.height,
-                }}
-              />
-            )}
+            <Selections
+              selections={selections}
+              setSelections={setSelections}
+              currentSelection={currentSelection}
+            />
           </div>
         )}
       </div>
