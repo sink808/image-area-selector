@@ -1,0 +1,61 @@
+.react-resizable-handle {
+  background-image: none;
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+}
+
+.react-resizable-handle-n,
+.react-resizable-handle-s,
+.react-resizable-handle-e,
+.react-resizable-handle-w,
+.react-resizable-handle-nw,
+.react-resizable-handle-ne,
+.react-resizable-handle-sw,
+.react-resizable-handle-se {
+  margin: 0;
+}
+
+.react-resizable-handle-nw {
+  top: -5px;
+  left: -5px;
+}
+
+.react-resizable-handle-ne {
+  top: -5px;
+  right: -5px;
+}
+
+.react-resizable-handle-sw {
+  bottom: -5px;
+  left: -5px;
+}
+
+.react-resizable-handle-se {
+  bottom: -5px;
+  right: -5px;
+}
+
+.react-resizable-handle-n {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.react-resizable-handle-s {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.react-resizable-handle-e {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.react-resizable-handle-w {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}

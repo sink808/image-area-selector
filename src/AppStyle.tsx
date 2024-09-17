@@ -37,4 +37,19 @@ export const style = {
     display: inline-block;
     overflow: hidden;
   `,
+  selectionBox: css`
+    position: absolute;
+    border: 2px solid rgba(0, 0, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: move;
+    box-sizing: border-box;
+  `,
+  dataContainer: css`
+    width: 548px;
+    height: 703px;
+    padding: 24px;
+    background-color: #2a3948;
+    color: #fff;
+    overflow-y: auto;
+  `,
 };
